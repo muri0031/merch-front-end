@@ -1,11 +1,17 @@
 
 <script>
 import { ALL_MOVIES_API_URL } from '../utils';
+import ReviewModal from '../components/ReviewModal.vue'; // Import the modal component
 
 export default {
+  components: {
+    ReviewModal
+  },
   data() {
     return {
-      movies: [] 
+      movies: [],
+      selectedMovie: null, // To store the selected movie for the modal
+      showModal: false // Controls modal visibility
     };
   },
   mounted() {
@@ -20,17 +26,25 @@ export default {
       } catch (error) {
         console.error('Error fetching movies:', error);
       }
+    },
+    openModal(movie) {
+      this.selectedMovie = movie;
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
     }
   }
 };
 </script>
 
+
 <template>
   <div class="container">
     <!-- Hero Section -->
-    <div class="hero-section">
+    <header class="hero-section">
       <h1>The Movie Buff's Corner</h1>
-    </div>
+    </header>
 
     <!-- Movies Grid -->
     <div class="movies-grid">
@@ -41,11 +55,20 @@ export default {
           class="movie-image"
         />
         <h2 class="movie-title">{{ movie.Title }}</h2>
-        <p class="movie-review">{{ movie.Review }}</p>
+        <button class="view-review-btn" @click="openModal(movie)">View Review</button>
       </div>
     </div>
+
+    <!-- Review Modal -->
+    <ReviewModal 
+      :visible="showModal" 
+      :movie="selectedMovie" 
+      @close="closeModal" 
+    />
   </div>
 </template>
+
+
 
 
 
@@ -88,7 +111,7 @@ export default {
 .movie-card img {
   display: block; /* Remove extra space below the image */
   width: 100%; /* Fill the width of the card */
-  height: 600px; /* Enforce consistent height */
+  height: 400px; /* Enforce consistent height */
   object-fit: cover; /* Ensure the image fills the placeholder and keeps its aspect ratio */
 }
 
@@ -104,7 +127,32 @@ export default {
   padding: 0 10px; /* Add padding for text inside the card */
 }
 
-/* Medium Screens (Tablets) and Large Screens (Desktops) */
+
+
+/* View Review Button */
+.view-review-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #ffdd00; /* Blue background */
+  color: black; /* White text */
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.view-review-btn:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+  color: white; 
+}
+
+
+/* ------------Medium Screens (Tablets) and Large Screens (Desktops)----------- */
 @media (min-width: 768px) {
   .movies-grid {
     grid-template-columns: repeat(3, 1fr); /* 3 columns for medium and large screens */
