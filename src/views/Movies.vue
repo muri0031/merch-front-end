@@ -135,7 +135,7 @@ export default {
 .movies-grid {
   display: grid;
   grid-template-columns: 1fr; /* 1 column by default for small screens */
-  gap: 40px;
+  gap: 60px;
 }
 
 .movie-card {
