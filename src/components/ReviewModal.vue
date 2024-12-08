@@ -50,17 +50,20 @@
     background: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 800px;
+    max-width: 1000px;
     width: 80%;
     text-align: center;
   }
   
   .modal-image {
-    max-width: 300px;
-    /* height: auto; */
-    max-height: 400px;
-    margin: 20px 0;
-  }
+  width: clamp(200px, 40%, 300px); /* Dynamically scale width between 150px and 300px */
+  aspect-ratio: 4 / 6; /* Maintain a consistent aspect ratio */
+  object-fit: cover; /* Ensure the image fills the area without distortion */
+  margin: 20px 0;
+}
+
+
+
   
   .close-btn {
     position: absolute;
@@ -84,6 +87,13 @@
     color: black;
     font-size: 1.3rem;
     padding: 0 20px;
+    font-size: clamp(1.3rem, 3vw, 1.4rem);
   }
+
+
+
+h2 {
+  font-size: clamp(1.7rem, 2vw, 2.2rem); /* Minimum size: 1rem, Preferred size: 3vw, Maximum size: 3rem */
+}
   </style>
   

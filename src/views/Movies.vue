@@ -9,7 +9,9 @@ export default {
   },
   data() {
     return {
-      movies: [],
+      movies: [], // Original movies data fetched from the API
+      filteredMovies: [], // Filtered movies to display
+      searchQuery: '', // Search input query
       selectedMovie: null, // To store the selected movie for the modal
       showModal: false // Controls modal visibility
     };
@@ -23,6 +25,7 @@ export default {
         const response = await fetch(ALL_MOVIES_API_URL);
         const data = await response.json();
         this.movies = data.data; 
+        this.filteredMovies = data.data; // Initialize filteredMovies
       } catch (error) {
         console.error('Error fetching movies:', error);
       }
@@ -33,10 +36,20 @@ export default {
     },
     closeModal() {
       this.showModal = false;
+    },
+    filterMovies() {
+      const query = this.searchQuery.toLowerCase();
+      this.filteredMovies = this.movies.filter(movie =>
+        movie.Title.toLowerCase().includes(query)
+      );
     }
+  },
+  watch: {
+    searchQuery: 'filterMovies' // Automatically filter movies when the search query changes
   }
 };
 </script>
+
 
 
 <template>
@@ -46,9 +59,19 @@ export default {
       <h1>The Movie Buff's Corner</h1>
     </header>
 
+    <!-- Search Box -->
+    <div class="search-box">
+      <input 
+        type="text" 
+        v-model="searchQuery" 
+        placeholder="Search for a movie..." 
+        class="search-input"
+      />
+    </div>
+
     <!-- Movies Grid -->
     <div class="movies-grid">
-      <div v-for="movie in movies" :key="movie.id" class="movie-card">
+      <div v-for="movie in filteredMovies" :key="movie.id" class="movie-card">
         <img
           :src="movie.Image.url"
           :alt="movie.Title"
@@ -74,6 +97,7 @@ export default {
 
 
 
+
 <style scoped>
 /* General Reset */
 .container {
@@ -86,9 +110,26 @@ export default {
   margin-bottom: 30px;
 }
 
-/* .hero-section h1 {
-  font-size: 2rem;
-} */
+/* Search Box */
+.search-box {
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.search-input {
+  width: 80%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ffdd00;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #2980b9;
+}
 
 /* Movies Grid for Small Screens */
 .movies-grid {
@@ -108,61 +149,74 @@ export default {
 }
 
 /* Movie Image Placeholder */
+/* .movie-card img {
+  display: block; 
+  width: 100%; 
+  height: 400px; 
+  object-fit: cover; 
+} */
+
+/* Movie Image Placeholder */
 .movie-card img {
   display: block; /* Remove extra space below the image */
   width: 100%; /* Fill the width of the card */
-  height: 400px; /* Enforce consistent height */
-  object-fit: cover; /* Ensure the image fills the placeholder and keeps its aspect ratio */
+  aspect-ratio: 16 / 20;
+  object-fit: cover; /* Ensure the image fills the placeholder without distortion */
+  border-radius: 8px; /* Optional: Add rounded corners */
 }
 
+
 .movie-title {
-  /* font-size: 1.2rem;
-  margin: 10px 0; */
   padding: 0 10px;
 }
 
-.movie-review {
-  /* font-size: 0.9rem; */
-  color: black;
-  padding: 0 10px; /* Add padding for text inside the card */
-}
-
-
-
-/* View Review Button */
 .view-review-btn {
   display: inline-block;
   margin-top: 10px;
   padding: 8px 16px;
-  background-color: #ffdd00; /* Blue background */
-  color: black; /* White text */
-  font-size: 0.9rem;
+  background-color: #ffdd00;
+  color: black;
+  /* font-size: 0.9rem; */
   font-weight: bold;
   text-decoration: none;
   border: none;
-  border-radius: 5px;
+  border-radius: 13px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
+  font-size: clamp(0.9rem, 1vw, 1.2rem);
 }
 
 .view-review-btn:hover {
-  background-color: #2980b9; /* Darker blue on hover */
-  color: white; 
+  background-color: #2980b9;
+  color: white;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 4vw, 4.5rem); /* Minimum size: 1.5rem, Preferred size: 4vw, Maximum size: 4.5rem */
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2vw, 2.2rem); /* Minimum size: 1rem, Preferred size: 3vw, Maximum size: 3rem */
 }
 
 
-/* ------------Medium Screens (Tablets) and Large Screens (Desktops)----------- */
+/* Medium Screens (Tablets) and Large Screens (Desktops) */
 @media (min-width: 768px) {
   .movies-grid {
     grid-template-columns: repeat(3, 1fr); /* 3 columns for medium and large screens */
-    /* gap: 30px; */
   }
 
-  .hero-section h1 {
+  /* .hero-section h1 {
     font-size: 4.5rem;
   }
+
+  h2 {
+    font-size: 1.9rem;
+  } */
+   
 }
 </style>
+
 
 
