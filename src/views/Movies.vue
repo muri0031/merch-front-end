@@ -10,10 +10,10 @@ export default {
   data() {
     return {
       movies: [], // Original movies data fetched from the API
-      filteredMovies: [], // Filtered movies to display
+      filteredMovies: [], 
       searchQuery: '', // Search input query
-      selectedMovie: null, // To store the selected movie for the modal
-      showModal: false // Controls modal visibility
+      selectedMovie: null, 
+      showModal: false 
     };
   },
   mounted() {
@@ -45,7 +45,7 @@ export default {
     }
   },
   watch: {
-    searchQuery: 'filterMovies' // Automatically filter movies when the search query changes
+    searchQuery: 'filterMovies' 
   }
 };
 </script>
@@ -134,7 +134,7 @@ export default {
 /* Movies Grid for Small Screens */
 .movies-grid {
   display: grid;
-  grid-template-columns: 1fr; /* 1 column by default for small screens */
+  grid-template-columns: 1fr; 
   gap: 60px;
 }
 
@@ -143,7 +143,7 @@ export default {
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
-  padding: 0; /* Remove padding inside the card */
+  padding: 0; 
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -152,11 +152,11 @@ export default {
 
 /* Movie Image Placeholder */
 .movie-card img {
-  display: block; /* Remove extra space below the image */
-  width: 100%; /* Fill the width of the card */
+  display: block; 
+  width: 100%; 
   aspect-ratio: 4 / 6;
-  object-fit: cover; /* Ensure the image fills the placeholder without distortion */
-  border-radius: 8px; /* Optional: Add rounded corners */
+  object-fit: cover; 
+  border-radius: 8px;
 }
 
 
@@ -187,18 +187,18 @@ export default {
 }
 
 h1 {
-  font-size: clamp(1.5rem, 4vw, 4.5rem); /* Minimum size: 1.5rem, Preferred size: 4vw, Maximum size: 4.5rem */
+  font-size: clamp(1.5rem, 4vw, 4.5rem); 
 }
 
 h2 {
-  font-size: clamp(1.5rem, 2vw, 2.2rem); /* Minimum size: 1rem, Preferred size: 3vw, Maximum size: 3rem */
+  font-size: clamp(1.5rem, 2vw, 2.2rem); 
 }
 
 
 /* Medium Screens (Tablets) and Large Screens (Desktops) */
 @media (min-width: 768px) {
   .movies-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for medium and large screens */
+    grid-template-columns: repeat(3, 1fr); 
   }
 
   /* .hero-section h1 {
