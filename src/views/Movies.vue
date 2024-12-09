@@ -148,19 +148,13 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Movie Image Placeholder */
-/* .movie-card img {
-  display: block; 
-  width: 100%; 
-  height: 400px; 
-  object-fit: cover; 
-} */
+
 
 /* Movie Image Placeholder */
 .movie-card img {
   display: block; /* Remove extra space below the image */
   width: 100%; /* Fill the width of the card */
-  aspect-ratio: 16 / 20;
+  aspect-ratio: 4 / 6;
   object-fit: cover; /* Ensure the image fills the placeholder without distortion */
   border-radius: 8px; /* Optional: Add rounded corners */
 }
