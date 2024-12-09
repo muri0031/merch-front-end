@@ -3,7 +3,7 @@ create a README file containing the type of review site, the choice of Headless 
 # Movies Review site
 ## Team members:
 -Karla Murillo
--Sarah 
+-Sarah Mohsen 
 -Tina Le
 -Fallon Pulido
 
