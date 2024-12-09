@@ -46,19 +46,20 @@
   }
   
   .modal-content {
-    position: relative; /* Relative positioning to position the close button */
+    position: relative; 
     background: white;
     padding: 20px;
     border-radius: 8px;
     max-width: 1000px;
     width: 80%;
     text-align: center;
+    margin:20px;
   }
   
   .modal-image {
-  width: clamp(200px, 40%, 300px); /* Dynamically scale width between 150px and 300px */
-  aspect-ratio: 4 / 6; /* Maintain a consistent aspect ratio */
-  object-fit: cover; /* Ensure the image fills the area without distortion */
+  width: clamp(200px, 40%, 300px); 
+  aspect-ratio: 4 / 6; 
+  object-fit: cover;
   margin: 20px 0;
 }
 
@@ -67,20 +68,20 @@
   
   .close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 30px;
+    right: 30px;
     border: none;
     background: none;
-    font-size: 2rem; /* Increase the font size for better visibility */
+    font-size: 2rem; 
     cursor: pointer;
-    color: #e74c3c; /* Red color for the close button */
+    color: #e74c3c; 
     font-weight: bold;
-    transition: transform 0.2s ease, color 0.2s ease; /* Smooth transitions */
+    transition: transform 0.2s ease, color 0.2s ease; 
   }
   
   .close-btn:hover {
-    color: #c0392b; /* Darker red on hover */
-    transform: scale(1.2); /* Slightly enlarge the button when hovered */
+    color: #c0392b; 
+    transform: scale(1.2); 
   }
   
   p {
@@ -93,7 +94,7 @@
 
 
 h2 {
-  font-size: clamp(1.7rem, 2vw, 2.2rem); /* Minimum size: 1rem, Preferred size: 3vw, Maximum size: 3rem */
+  font-size: clamp(1.7rem, 2vw, 2.2rem); 
 }
   </style>
   
