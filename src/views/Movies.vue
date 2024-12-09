@@ -148,13 +148,7 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Movie Image Placeholder */
-/* .movie-card img {
-  display: block; 
-  width: 100%; 
-  height: 400px; 
-  object-fit: cover; 
-} */
+
 
 /* Movie Image Placeholder */
 .movie-card img {
