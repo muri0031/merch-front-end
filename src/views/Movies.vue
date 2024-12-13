@@ -1,7 +1,7 @@
 
 <script>
 import { ALL_MOVIES_API_URL } from '../utils';
-import ReviewModal from '../components/ReviewModal.vue'; // Import the modal component
+import ReviewModal from '../components/ReviewModal.vue'; 
 
 export default {
   components: {
@@ -9,11 +9,12 @@ export default {
   },
   data() {
     return {
-      movies: [], // Original movies data fetched from the API
+      movies: [], 
       filteredMovies: [], 
-      searchQuery: '', // Search input query
+      searchQuery: '',
       selectedMovie: null, 
-      showModal: false 
+      showModal: false,
+      loading: false 
     };
   },
   mounted() {
@@ -21,13 +22,16 @@ export default {
   },
   methods: {
     async fetchMovies() {
+      this.loading = true; 
       try {
         const response = await fetch(ALL_MOVIES_API_URL);
         const data = await response.json();
         this.movies = data.data; 
-        this.filteredMovies = data.data; // Initialize filteredMovies
+        this.filteredMovies = data.data; 
       } catch (error) {
         console.error('Error fetching movies:', error);
+      } finally {
+        this.loading = false; 
       }
     },
     openModal(movie) {
@@ -69,6 +73,11 @@ export default {
       />
     </div>
 
+        <!-- Loading Indicator -->
+        <div v-if="loading" class="loader-container">
+      <div class="loader"></div>>
+    </div>
+
     <!-- Movies Grid -->
     <div class="movies-grid">
       <div v-for="movie in filteredMovies" :key="movie.id" class="movie-card">
@@ -95,13 +104,39 @@ export default {
 
 
 
-
-
-
 <style scoped>
 /* General Reset */
 .container {
   padding: 50px;
+}
+
+/*Loader*/
+.loader-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100px; 
+}
+.loader {
+   --s: 40px;
+   height: calc(var(--s)*0.9);
+   width: calc(var(--s)*5);
+  --v1:transparent,#000 0.5deg 108deg,#0000 109deg;
+  --v2:transparent,#000 0.5deg  36deg,#0000  37deg;
+  -webkit-mask:
+    conic-gradient(from 54deg  at calc(var(--s)*0.68) calc(var(--s)*0.57),var(--v1)),
+    conic-gradient(from 90deg  at calc(var(--s)*0.02) calc(var(--s)*0.35),var(--v2)),
+    conic-gradient(from 126deg at calc(var(--s)*0.5)  calc(var(--s)*0.7) ,var(--v1)),
+    conic-gradient(from 162deg at calc(var(--s)*0.5)  0                  ,var(--v2));
+  -webkit-mask-size: var(--s) var(--s);
+  -webkit-mask-composite: xor,destination-over;
+          mask-composite: exclude,add;
+  -webkit-mask-repeat:repeat-x;
+  background:linear-gradient(#ffb940 0 0) left/0% 100% #ddd no-repeat;
+  animation: l20 2s infinite linear;
+}
+@keyframes l20 {
+    90%,100% {background-size:100% 100%}
 }
 
 /* Hero Section */
@@ -210,6 +245,7 @@ h2 {
   } */
    
 }
+
 </style>
 
 
