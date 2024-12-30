@@ -1,5 +1,12 @@
-# Vue 3 + Vite
+create a README file containing the type of review site, the choice of Headless CMS and frontend tool. 
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Movies Review site
+## Team members:
+-Karla Murillo
+-Sarah Mohsen 
+-Tina Le
+-Fallon Pulido
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Headless CMS and Front End
+-The site was created using Strappi, cloudinary for images and render.
+-For the front end, we chose vite + vue to create the site.

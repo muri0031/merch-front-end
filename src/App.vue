@@ -9,7 +9,7 @@ import { RouterView } from 'vue-router';
      <RouterView/>
   </template>
   <template #fallback>
-    Loading...
+  
   </template >
 </Suspense>
 </template>
